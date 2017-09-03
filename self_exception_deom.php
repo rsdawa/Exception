@@ -26,14 +26,28 @@ try {
         throw new AgeException('不符合参军年龄！', 999); //抛出年龄异常
     }
     echo "恭喜，您的年龄适合参军!";
-} catch (AgeException $e) {
-    //捕获年龄异常
-    echo "<br/>产生年龄异常!!!";
-    echo "</br>异常代号：" . $e->getCode();
-    echo "</br>异常信息：" . $e->getMessage();
-} catch (GetAgeException $e) {
-    //捕获参数异常
-    echo "<br/>产生年龄参数异常!!!";
+}
+//    catch (AgeException $e) {
+//     //捕获年龄异常
+//     echo "<br/>产生年龄异常!!!";
+//     echo "</br>异常代号：" . $e->getCode();
+//     echo "</br>异常信息：" . $e->getMessage();
+// }
+//    catch (GetAgeException $e) {
+//     //捕获参数异常
+//     echo "<br/>产生年龄参数异常!!!";
+//     echo "</br>异常代号：" . $e->getCode();
+//     echo "</br>异常信息：" . $e->getMessage();
+// }
+
+ catch (Exception $e) {
+    //使用父类变量，可以捕获任何一个子类的异常
+    if ($e->getCode() == 111) {
+        echo "<br/>产生参数异常!!!";
+    } else if ($e->getCode() == 999) {
+        echo "<br/>产生年龄异常!!!";
+    }
+
     echo "</br>异常代号：" . $e->getCode();
     echo "</br>异常信息：" . $e->getMessage();
 }
